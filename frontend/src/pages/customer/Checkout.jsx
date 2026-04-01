@@ -362,7 +362,7 @@ const Checkout = () => {
                     const price = item.product?.pricing?.finalPrice || 0;
                     const imgUrl = item.product?.images?.[0]?.url;
                     const fullImg = imgUrl
-                      ? imgUrl.startsWith('http') ? imgUrl : `http://localhost:5000${imgUrl}`
+                      ? imgUrl.startsWith('http') ? imgUrl : `${import.meta.env.VITE_API_URL}${imgUrl}`
                       : '/placeholder.png';
 
                     return (

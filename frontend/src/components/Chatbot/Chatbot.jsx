@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import { IoClose, IoChatbubbleEllipses, IoSend, IoVolumeHigh, IoMic, IoExpand, IoContract } from 'react-icons/io5';
 import './Chatbot.css';
 
@@ -87,12 +87,8 @@ const Chatbot = () => {
         setIsLoading(true);
 
         try {
-            const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:5000/api/chatbot/message',
-                { message: userMessage.text, language: language },
-                {
-                    headers: token ? { Authorization: `Bearer ${token}` } : {}
-                }
+            const response = await api.post('/api/chatbot/message',
+                { message: userMessage.text, language: language }
             );
 
             const botReply = { role: 'bot', text: response.data.message, lang: language };

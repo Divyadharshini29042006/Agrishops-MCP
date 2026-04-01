@@ -634,7 +634,7 @@ const Register = () => {
               type="button"
               onClick={() => {
                 console.log('Redirecting to Google OAuth...');
-                window.location.href = 'http://localhost:5000/api/auth/google';
+                window.location.href = `${import.meta.env.VITE_API_URL}/api/auth/google`;
               }}
               className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 hover:border-green-500 text-gray-700 font-semibold py-3 px-4 rounded-lg transform transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 shadow-sm hover:shadow-md group"
             >
