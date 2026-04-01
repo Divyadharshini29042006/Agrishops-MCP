@@ -34,7 +34,7 @@ const OrderDetails = () => {
   const fetchOrderDetails = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/retailer/orders/${id}`);
+      const response = await api.get(`/api/retailer/orders/${id}`);
       setOrder(response.data.data);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -61,7 +61,7 @@ const OrderDetails = () => {
     try {
       setUpdating(true);
       
-      await api.patch(`/retailer/purchases/${id}/confirm-delivery`, {
+      await api.patch(`/api/retailer/purchases/${id}/confirm-delivery`, {
         note: deliveryNote,
       });
 
@@ -81,7 +81,7 @@ const OrderDetails = () => {
     try {
       setUpdating(true);
       
-      await api.put(`/retailer/orders/${id}/status`, {
+      await api.put(`/api/retailer/orders/${id}/status`, {
         status: newStatus,
         note: statusNote,
         trackingNumber: newStatus === 'shipped' ? trackingNumber : undefined,
@@ -105,7 +105,7 @@ const OrderDetails = () => {
     try {
       setUpdating(true);
       
-      await api.put(`/retailer/orders/${id}/status`, {
+      await api.put(`/api/retailer/orders/${id}/status`, {
         status: 'cancelled',
         note: cancellationReason,
       });

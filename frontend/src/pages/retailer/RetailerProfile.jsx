@@ -131,7 +131,7 @@ const RetailerProfile = () => {
       const formData = new FormData();
       formData.append('image', brandLogo);
 
-      const response = await api.post('/brands/upload', formData, {
+      const response = await api.post('/api/brands/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -152,7 +152,7 @@ const RetailerProfile = () => {
 
     try {
       setIsUploadingLogo(true);
-      await api.delete('/brands/my-logo');
+      await api.delete('/api/brands/my-logo');
 
       await updateProfile({
         businessDetails: {
@@ -191,7 +191,7 @@ const RetailerProfile = () => {
       // Remove the local address object before sending
       delete submitData.address;
 
-      const response = await api.put('/users/profile', submitData);
+      const response = await api.put('/api/users/profile', submitData);
 
       await updateProfile(response.data.data);
       showSuccess('Profile updated successfully!');

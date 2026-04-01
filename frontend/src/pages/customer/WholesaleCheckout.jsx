@@ -44,7 +44,7 @@ const WholesaleCheckout = () => {
             setValidationWarnings([]);
             
             // First get the inquiry details
-            const response = await api.get(`/wholesale/my-inquiries`);
+            const response = await api.get('/api/wholesale/my-inquiries');
             const foundInquiry = response.data.data.find(q => q._id === id);
 
             if (!foundInquiry) {
@@ -64,7 +64,7 @@ const WholesaleCheckout = () => {
 
             // Now call the dedicated validation endpoint
             setValidating(true);
-            const valResponse = await api.get(`/wholesale/${id}/validate`);
+            const valResponse = await api.get(`/api/wholesale/${id}/validate`);
             if (!valResponse.data.valid) {
                 setValidationErrors(valResponse.data.errors || ['Validation failed']);
             }
@@ -132,11 +132,11 @@ const WholesaleCheckout = () => {
             }
 
             // 2. Get Razorpay Key and create Order
-            const keyRes = await api.get('/payment/key');
+            const keyRes = await api.get('/api/payment/key');
             const razorpayKey = keyRes.data.key;
 
             // Use the calculated total (quantity * pricePerUnit)
-            const orderRes = await api.post('/payment/create-order', { amount: totalAmount });
+            const orderRes = await api.post('/api/payment/create-order', { amount: totalAmount });
             const razorpayOrder = orderRes.data.order;
 
             // 3. Configure Razorpay options
@@ -149,7 +149,7 @@ const WholesaleCheckout = () => {
                 order_id: razorpayOrder.id,
                 handler: async (response) => {
                     try {
-                        const verifyRes = await api.post(`/wholesale/${id}/verify-payment`, {
+                        const verifyRes = await api.post(`/api/wholesale/${id}/verify-payment`, {
                             razorpay_order_id: response.razorpay_order_id,
                             razorpay_payment_id: response.razorpay_payment_id,
                             razorpay_signature: response.razorpay_signature,

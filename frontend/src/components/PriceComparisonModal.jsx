@@ -15,7 +15,7 @@ const PriceComparisonModal = ({ product, onClose }) => {
   const fetchComparison = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/products/${product._id}/compare`);
+      const response = await api.get(`/api/products/${product._id}/compare`);
       setComparisonData(response.data.data);
     } catch (err) {
       console.error('Fetch comparison error:', err);

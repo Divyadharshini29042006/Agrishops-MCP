@@ -17,9 +17,9 @@ export function CartProvider({ children }) {
   // Determine API endpoint based on user role
   const getCartEndpoint = () => {
     if (user?.role === 'retailer') {
-      return '/retailer/cart';
+      return '/api/retailer/cart';
     }
-    return '/cart';
+    return '/api/cart';
   };
 
   // Load cart from backend on mount and when user changes

@@ -67,14 +67,14 @@ const AdminDashboard = () => {
       setLoading(true);
       
       // Fetch dashboard stats
-      const statsRes = await api.get('/admin/dashboard/stats');
+      const statsRes = await api.get('/api/admin/dashboard/stats');
       if (statsRes.data.success) {
         setStats(statsRes.data.data);
       }
 
       // Fetch recent activity
       try {
-        const activityRes = await api.get('/admin/dashboard/activity');
+        const activityRes = await api.get('/api/admin/dashboard/activity');
         if (activityRes.data.success) {
           // Combine all activity types
           const allActivity = [];
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
 
       // Fetch analytics
       try {
-        const analyticsRes = await api.get('/admin/dashboard/analytics');
+        const analyticsRes = await api.get('/api/admin/dashboard/analytics');
         if (analyticsRes.data.success) {
           setAnalytics(analyticsRes.data.data);
         }

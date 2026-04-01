@@ -93,7 +93,7 @@ const CustomerProfile = () => {
     try {
       setIsSaving(true);
 
-      const response = await api.put('/users/profile', {
+      const response = await api.put('/api/users/profile', {
         name: profileData.name,
         phone: profileData.phone,
         location: {
@@ -133,7 +133,7 @@ const CustomerProfile = () => {
     try {
       setIsSaving(true);
 
-      await api.put('/users/password', {
+      await api.put('/api/users/password', {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       });

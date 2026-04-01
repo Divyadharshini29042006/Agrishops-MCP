@@ -44,7 +44,7 @@ const Navbar = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.get('/categories/tree');
+      const response = await api.get('/api/categories/tree');
       if (response.data.success) {
         setCategoryTree(response.data.data);
       }

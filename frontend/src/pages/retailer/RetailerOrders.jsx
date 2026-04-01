@@ -63,7 +63,7 @@ const RetailerOrders = () => {
       
       if (activeTab === 'received') {
         // Fetch orders from customers (I'm the seller)
-        const response = await api.get('/retailer/orders', {
+        const response = await api.get('/api/retailer/orders', {
           params: {
             status: statusFilter === 'all' ? undefined : statusFilter,
             search: searchQuery || undefined,
@@ -81,7 +81,7 @@ const RetailerOrders = () => {
         }
       } else {
         // Fetch orders I placed with suppliers (I'm the buyer)
-        const response = await api.get('/retailer/purchases', {
+        const response = await api.get('/api/retailer/purchases', {
           params: {
             status: statusFilter === 'all' ? undefined : statusFilter,
             search: searchQuery || undefined,
@@ -104,7 +104,7 @@ const RetailerOrders = () => {
 
   const checkForNewOrders = async () => {
     try {
-      const response = await api.get('/retailer/orders', {
+      const response = await api.get('/api/retailer/orders', {
         params: { status: 'pending', limit: 1 },
       });
       

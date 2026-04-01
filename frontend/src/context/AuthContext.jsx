@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
       if (token) {
         try {
           console.log('🔄 Loading user from token...');
-          const response = await api.get('/auth/me');
+          const response = await api.get('/api/auth/me');
           
           const userData = response.data.data || response.data;
           setUser(userData);
@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
     try {
       console.log('🔐 Attempting login...', email);
       
-      const response = await api.post('/auth/login', { email, password });
+      const response = await api.post('/api/auth/login', { email, password });
       
       console.log('📦 Login response:', response.data);
       
@@ -114,7 +114,7 @@ export function AuthProvider({ children }) {
 
   const register = async (userData) => {
     try {
-      const response = await api.post('/auth/register', userData);
+      const response = await api.post('/api/auth/register', userData);
       
       const message = response.data.message || 'Registration successful';
       showSuccess(message);
@@ -152,7 +152,7 @@ export function AuthProvider({ children }) {
 
   const updateProfile = async (data) => {
     try {
-      const response = await api.put('/users/profile', data);
+      const response = await api.put('/api/users/profile', data);
       const updatedUser = response.data.data || response.data;
       
       setUser(updatedUser);
@@ -174,7 +174,7 @@ export function AuthProvider({ children }) {
 
   const forgotPassword = async (email) => {
     try {
-      const response = await api.post('/auth/forgot-password', { email });
+      const response = await api.post('/api/auth/forgot-password', { email });
       showSuccess(response.data.message || 'OTP sent to your email');
       return { success: true };
     } catch (error) {
@@ -186,7 +186,7 @@ export function AuthProvider({ children }) {
 
   const verifyOTP = async (email, otp) => {
     try {
-      const response = await api.post('/auth/verify-otp', { email, otp });
+      const response = await api.post('/api/auth/verify-otp', { email, otp });
       showSuccess(response.data.message || 'OTP verified successfully');
       return { success: true };
     } catch (error) {
@@ -198,7 +198,7 @@ export function AuthProvider({ children }) {
 
   const resetPassword = async (email, otp, newPassword) => {
     try {
-      const response = await api.post('/auth/reset-password', { email, otp, newPassword });
+      const response = await api.post('/api/auth/reset-password', { email, otp, newPassword });
       showSuccess(response.data.message || 'Password reset successfully');
       return { success: true };
     } catch (error) {

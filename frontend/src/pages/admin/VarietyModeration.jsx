@@ -17,7 +17,7 @@ const VarietyModeration = () => {
   const fetchPendingVarieties = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/varieties/admin/pending');
+      const response = await api.get('/api/varieties/admin/pending');
       setPendingVarieties(response.data.data || []);
     } catch (error) {
       console.error('Error fetching pending varieties:', error);
@@ -32,7 +32,7 @@ const VarietyModeration = () => {
 
     try {
       setProcessing(true);
-      await api.put(`/varieties/${varietyId}/approve`);
+      await api.put(`/api/varieties/${varietyId}/approve`);
       alert('Variety approved successfully!');
       fetchPendingVarieties();
       setShowModal(false);
@@ -54,7 +54,7 @@ const VarietyModeration = () => {
 
     try {
       setProcessing(true);
-      await api.put(`/varieties/${varietyId}/reject`, { reason });
+      await api.put(`/api/varieties/${varietyId}/reject`, { reason });
       alert('Variety rejected');
       fetchPendingVarieties();
       setShowModal(false);

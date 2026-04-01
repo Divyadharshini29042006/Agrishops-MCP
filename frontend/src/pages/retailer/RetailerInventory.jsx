@@ -48,7 +48,7 @@ const RetailerInventory = () => {
   const fetchInventory = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/retailer/inventory', {
+      const response = await api.get('/api/retailer/inventory', {
         params: {
           status: statusFilter === 'all' ? undefined : statusFilter,
           search: searchQuery || undefined,
@@ -83,7 +83,7 @@ const RetailerInventory = () => {
       setUpdating(true);
       const product = editStockModal.product;
 
-      await api.put(`/retailer/inventory/${product._id}/stock`, {
+      await api.put(`/api/retailer/inventory/${product._id}/stock`, {
         quantity: stockQuantity,
         operation, // 'set' or 'add'
       });

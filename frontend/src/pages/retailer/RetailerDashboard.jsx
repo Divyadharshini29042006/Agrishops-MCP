@@ -31,7 +31,7 @@ const RetailerDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/retailer/dashboard/stats');
+      const response = await api.get('/api/retailer/dashboard/stats');
       setStats(response.data.data);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
@@ -43,7 +43,7 @@ const RetailerDashboard = () => {
 
   const checkExpiryAlerts = async () => {
     try {
-      await api.post('/retailer/check-expiry-alerts');
+      await api.post('/api/retailer/check-expiry-alerts');
     } catch (error) {
       console.error('Error checking expiry alerts:', error);
     }

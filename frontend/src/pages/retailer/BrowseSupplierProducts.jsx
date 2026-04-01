@@ -41,7 +41,7 @@ const BrowseSupplierProducts = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.get('/categories');
+      const response = await api.get('/api/categories');
       setCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -51,7 +51,7 @@ const BrowseSupplierProducts = () => {
   const fetchSupplierProducts = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/retailer/suppliers/products', {
+      const response = await api.get('/api/retailer/suppliers/products', {
         params: {
           category: categoryFilter || undefined,
           search: searchQuery || undefined,
@@ -96,7 +96,7 @@ const BrowseSupplierProducts = () => {
         return;
       }
 
-      await api.post('/retailer/purchase-from-supplier', {
+      await api.post('/api/retailer/purchase-from-supplier', {
         productId: product._id,
         quantity,
         notes,

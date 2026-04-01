@@ -66,11 +66,11 @@ const Checkout = () => {
       setLoading(true);
 
       // 1. Get Razorpay key
-      const keyRes = await api.get('payment/key');
+      const keyRes = await api.get('/api/payment/key');
       const razorpayKey = keyRes.data.key;
 
       // 2. Create Razorpay order on backend
-      const orderRes = await api.post('payment/create-order', { amount: orderTotal });
+      const orderRes = await api.post('/api/payment/create-order', { amount: orderTotal });
       const razorpayOrder = orderRes.data.order;
 
       // 3. Open Razorpay checkout popup
@@ -84,7 +84,7 @@ const Checkout = () => {
         handler: async (response) => {
           try {
             // 4. Verify payment on backend → creates DB order
-            const verifyRes = await api.post('payment/verify', {
+            const verifyRes = await api.post('/api/payment/verify', {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
@@ -144,7 +144,7 @@ const Checkout = () => {
   const handleCodOrder = async () => {
     try {
       setLoading(true);
-      const res = await api.post('payment/cod', {
+      const res = await api.post('/api/payment/cod', {
         items: buildOrderItems(),
         deliveryAddress: address,
       });

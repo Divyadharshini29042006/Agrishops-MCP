@@ -75,7 +75,7 @@ const Products = () => {
 
   const fetchCategoryTree = async () => {
     try {
-      const response = await api.get('/categories/tree');
+      const response = await api.get('/api/categories/tree');
       if (response.data.success) {
         setCategoryTree(response.data.data || []);
 
@@ -142,7 +142,7 @@ const Products = () => {
 
       console.log('Fetching products with params:', params); // Debug
 
-      const response = await api.get('/products', { params, signal });
+      const response = await api.get('/api/products', { params, signal });
 
       if (response.data.success) {
         setProducts(response.data.data || []);

@@ -46,7 +46,7 @@ const BulkOrderModal = ({ product, selectedVariant, quantity, onClose }) => {
   const fetchComparison = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/wholesale/compare/${product._id}`, {
+      const response = await api.get(`/api/wholesale/compare/${product._id}`, {
         params: { quantity, variantId: selectedVariant?._id }
       });
       setComparisonData(response.data.data);
@@ -118,7 +118,7 @@ const BulkOrderModal = ({ product, selectedVariant, quantity, onClose }) => {
 
     try {
       setSubmitting(true);
-      await api.post('/wholesale', {
+      await api.post('/api/wholesale', {
         productId: selectedSupplier.productId,
         quantity: totals.count,
         message: fullMessage,

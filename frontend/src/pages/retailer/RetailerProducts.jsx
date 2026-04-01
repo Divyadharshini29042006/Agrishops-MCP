@@ -39,7 +39,7 @@ const RetailerProducts = () => {
 
   const fetchMainCategories = async () => {
     try {
-      const response = await api.get('categories?level=main');
+      const response = await api.get('/api/categories?level=main');
       setSystemMainCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching main categories:', error);
@@ -54,7 +54,7 @@ const RetailerProducts = () => {
     try {
       setLoading(true);
       // Same endpoint as supplier - retailers use the same product system
-      const response = await api.get('/products/my/products');
+      const response = await api.get('/api/products/my/products');
       const data = response.data.data || response.data || [];
       console.log('Fetched products:', data);
       setProducts(data);
@@ -99,7 +99,7 @@ const RetailerProducts = () => {
   const handleDelete = async (productId) => {
     try {
       setDeleting(true);
-      await api.delete(`/products/${productId}`);
+      await api.delete(`/api/products/${productId}`);
       showSuccess('Product deleted successfully');
       setProducts(prev => prev.filter(p => p._id !== productId));
       setDeleteModal({ show: false, productId: null, productName: '' });

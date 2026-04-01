@@ -17,7 +17,7 @@ const WholesaleInquiries = () => {
   const fetchInquiries = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/wholesale/my-inquiries');
+      const response = await api.get('/api/wholesale/my-inquiries');
       setInquiries(response.data.data);
     } catch {
       showError('Failed to load inquiries');
@@ -28,7 +28,7 @@ const WholesaleInquiries = () => {
 
   const handleAcceptQuote = async (inquiryId) => {
     try {
-      await api.patch(`/wholesale/${inquiryId}/respond`, {
+      await api.patch(`/api/wholesale/${inquiryId}/respond`, {
         accepted: true,
         message: 'I accept this quote',
       });

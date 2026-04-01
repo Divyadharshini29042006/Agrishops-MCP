@@ -52,7 +52,7 @@ const RetailerCart = () => {
 
     setProcessingCheckout(true);
     try {
-      const response = await api.post('/retailer/orders', {
+      const response = await api.post('/api/retailer/orders', {
         items: cart.map(item => ({
           product: item.product._id,
           quantity: item.quantity,

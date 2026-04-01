@@ -36,7 +36,7 @@ const CustomerOrders = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/orders/my-orders', {
+      const response = await api.get('/api/orders/my-orders', {
         params: {
           page: currentPage,
           limit: itemsPerPage,

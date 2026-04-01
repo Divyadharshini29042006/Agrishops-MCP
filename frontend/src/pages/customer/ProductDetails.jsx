@@ -110,7 +110,7 @@ const ProductDetails = () => {
     try {
       setLoading(true);
       // ✅ NEW: Use aggregated endpoint to get everything in one call
-      const response = await api.get(`/products/${id}/details`);
+      const response = await api.get(`/api/products/${id}/details`);
       const { product: productData, otherSellers, similarProducts: similar } = response.data.data;
 
       setProduct(productData);
