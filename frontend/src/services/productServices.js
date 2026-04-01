@@ -2,7 +2,7 @@
 import api from './api';
 
 // ✅ NO '/api' prefix - api instance already has baseURL='/api'
-const API_URL = '/products';
+const API_URL = '/api/products';
 
 /**
  * Get all products with filters
@@ -74,7 +74,7 @@ export const deleteProduct = async (productId) => {
  */
 export const getMyProducts = async () => {
   try {
-    const response = await api.get('/my/products');
+    const response = await api.get('/api/products/my/products');
     return response.data;
   } catch (error) {
     throw error.response?.data || error;

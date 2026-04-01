@@ -105,7 +105,7 @@ const EditProduct = () => {
   // ✅ FETCH MAIN CATEGORIES
   const fetchMainCategories = async () => {
     try {
-      const response = await api.get('categories?level=main');
+      const response = await api.get('/api/categories?level=main');
       setMainCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching main categories:', error);
@@ -116,7 +116,7 @@ const EditProduct = () => {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`products/${id}`);
+      const response = await api.get(`/api/products/${id}`);
       const product = response.data.data || response.data;
 
       // Extract category IDs
@@ -249,7 +249,7 @@ const EditProduct = () => {
 
   const fetchSubCategories = async (parentId) => {
     try {
-      const response = await api.get(`categories?parent=${parentId}`);
+      const response = await api.get(`/api/categories?parent=${parentId}`);
       setSubCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching subcategories:', error);
@@ -267,7 +267,7 @@ const EditProduct = () => {
 
   const fetchTypeCategories = async (parentId) => {
     try {
-      const response = await api.get(`categories?parent=${parentId}`);
+      const response = await api.get(`/api/categories?parent=${parentId}`);
       setTypeCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching type categories:', error);
@@ -541,7 +541,7 @@ const EditProduct = () => {
         productData.append('images', image);
       });
 
-      await api.put(`products/${id}`, productData, {
+      await api.put(`/api/products/${id}`, productData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

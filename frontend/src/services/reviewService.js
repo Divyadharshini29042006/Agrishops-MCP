@@ -1,7 +1,7 @@
 // frontend/src/services/reviewService.js
 import api from './api';
 
-const API_URL = '/reviews';
+const API_URL = '/api/reviews';
 
 /**
  * Create a new review for an order

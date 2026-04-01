@@ -34,7 +34,7 @@ const SupplierWholesaleInquiries = () => {
     const fetchInquiries = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/wholesale/supplier-inquiries');
+            const response = await api.get('/api/wholesale/supplier-inquiries');
             setInquiries(response.data.data || []);
         } catch (error) {
             console.error('Error fetching inquiries:', error);
@@ -83,7 +83,7 @@ const SupplierWholesaleInquiries = () => {
 
         try {
             setSubmitting(true);
-            await api.patch(`/wholesale/${selectedInquiry._id}/quote`, {
+            await api.patch(`/api/wholesale/${selectedInquiry._id}/quote`, {
                 quotedPrice: parseFloat(quoteForm.quotedPrice),
                 message: quoteForm.message,
                 minimumBulkQuantity: parseInt(quoteForm.minimumBulkQuantity),
@@ -119,7 +119,7 @@ const SupplierWholesaleInquiries = () => {
 
         try {
             setSubmitting(true);
-            await api.patch(`/wholesale/${selectedInquiry._id}/reject`, {
+            await api.patch(`/api/wholesale/${selectedInquiry._id}/reject`, {
                 rejectionReason,
             });
 

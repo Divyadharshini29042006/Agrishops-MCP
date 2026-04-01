@@ -45,7 +45,7 @@ const SupplierOrders = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/supplier/orders', {
+      const response = await api.get('/api/supplier/orders', {
         params: {
           status: statusFilter === 'all' ? undefined : statusFilter,
           search: searchQuery || undefined,

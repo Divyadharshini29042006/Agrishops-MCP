@@ -104,7 +104,7 @@ const AddProduct = () => {
 
   const fetchExistingProducts = async () => {
     try {
-      const response = await api.get('/products/my/products');
+      const response = await api.get('/api/products/my/products');
       const products = response.data.data || [];
       const productMap = new Map();
       products.forEach(product => {
@@ -120,7 +120,7 @@ const AddProduct = () => {
 
   const fetchMainCategories = async () => {
     try {
-      const response = await api.get('categories?level=main');
+      const response = await api.get('/api/categories?level=main');
       setMainCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching main categories:', error);
@@ -142,7 +142,7 @@ const AddProduct = () => {
 
   const fetchSubCategories = async (parentId) => {
     try {
-      const response = await api.get(`categories?parent=${parentId}`);
+      const response = await api.get(`/api/categories?parent=${parentId}`);
       setSubCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching subcategories:', error);
@@ -159,7 +159,7 @@ const AddProduct = () => {
 
   const fetchTypeCategories = async (parentId) => {
     try {
-      const response = await api.get(`categories?parent=${parentId}`);
+      const response = await api.get(`/api/categories?parent=${parentId}`);
       setTypeCategories(response.data.data || []);
     } catch (error) {
       console.error('Error fetching type categories:', error);
@@ -177,7 +177,7 @@ const AddProduct = () => {
 
   const fetchVarieties = async (productTypeId) => {
     try {
-      const response = await api.get(`/varieties?productType=${productTypeId}&status=approved`);
+      const response = await api.get(`/api/varieties?productType=${productTypeId}&status=approved`);
       // ✅ Support new API: varieties (available) + usedVarieties (already listed)
       const data = response.data;
       setVarieties(data.varieties || data.data || []);
@@ -509,7 +509,7 @@ const AddProduct = () => {
         });
       }
 
-      await api.post('products', productData, {
+      await api.post('/api/products', productData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

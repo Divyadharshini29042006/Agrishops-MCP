@@ -37,7 +37,7 @@ const SupplierOrderDetails = () => {
   const fetchOrderDetails = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/supplier/orders/${id}`);
+      const response = await api.get(`/api/supplier/orders/${id}`);
       setOrder(response.data.data);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -56,7 +56,7 @@ const SupplierOrderDetails = () => {
 
     try {
       setUpdating(true);
-      await api.patch(`/supplier/orders/${id}/status`, {
+      await api.patch(`/api/supplier/orders/${id}/status`, {
         status: selectedStatus,
       });
 
@@ -74,7 +74,7 @@ const SupplierOrderDetails = () => {
   const handleCancelOrder = async () => {
     try {
       setUpdating(true);
-      await api.patch(`/supplier/orders/${id}/status`, {
+      await api.patch(`/api/supplier/orders/${id}/status`, {
         status: 'cancelled',
       });
 

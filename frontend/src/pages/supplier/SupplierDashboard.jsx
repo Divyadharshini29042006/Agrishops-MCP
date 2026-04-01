@@ -34,7 +34,7 @@ const SupplierDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const statsRes = await api.get('supplier/dashboard/stats');
+      const statsRes = await api.get('/api/supplier/dashboard/stats');
       const dashboardStats = statsRes.data.data;
 
       setStats({
@@ -49,7 +49,7 @@ const SupplierDashboard = () => {
         recentOrders: dashboardStats.recentOrders
       });
 
-      const productsRes = await api.get('products/my/products?limit=5');
+      const productsRes = await api.get('/api/products/my/products?limit=5');
       const products = productsRes.data.data || productsRes.data || [];
       setRecentProducts(products);
 

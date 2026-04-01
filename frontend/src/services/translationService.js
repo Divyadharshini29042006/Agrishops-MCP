@@ -268,7 +268,7 @@ export async function translateBatch(texts, targetLanguage, sourceLanguage = 'en
         }
 
         // Call API for uncached texts
-        const response = await api.post('/translate/batch', {
+        const response = await api.post('/api/translate/batch', {
             texts: textsToTranslate,
             targetLanguage,
             sourceLanguage

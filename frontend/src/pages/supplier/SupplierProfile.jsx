@@ -112,7 +112,7 @@ const SupplierProfile = () => {
         }
       };
 
-      await api.put('users/profile', updateData);
+      await api.put('/api/users/profile', updateData);
       await updateProfile(updateData);
 
       showSuccess('Profile updated successfully!');
@@ -142,7 +142,7 @@ const SupplierProfile = () => {
     try {
       setIsSaving(true);
 
-      await api.put('users/password', {
+      await api.put('/api/users/password', {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       });
@@ -191,7 +191,7 @@ const SupplierProfile = () => {
       const formData = new FormData();
       formData.append('image', brandLogo);
 
-      const response = await api.post('brands/upload', formData, {
+      const response = await api.post('/api/brands/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -220,7 +220,7 @@ const SupplierProfile = () => {
 
     try {
       setIsUploading(true);
-      await api.delete('brands/my-logo');
+      await api.delete('/api/brands/my-logo');
 
       await updateProfile({ businessDetails: { ...user.businessDetails, brandLogo: null } });
       setLogoPreview('');
