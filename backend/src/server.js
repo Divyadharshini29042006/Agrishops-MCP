@@ -4,7 +4,7 @@ dotenv.config();
 
 import mongoose from "mongoose";
 import app from "./app.js";
-import createDefaultAdmin from "./config/createDefaultAdMIN.js";
+import createDefaultAdmin from "./config/createDefaultAdmin.js";
 import { initOfferScheduler } from "./utils/offerScheduler.js";
 
 mongoose
