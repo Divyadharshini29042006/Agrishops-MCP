@@ -1,0 +1,380 @@
+
+
+
+
+
+{
+  "vegetableSeeds": [
+    {
+      "name": "Tomato Seeds",
+      "varieties": [
+        "Cherry Tomato",
+        "Roma Tomato",
+        "Beefsteak Tomato",
+        "Hybrid Tomato",
+        "Heirloom Tomato",
+        "Plum Tomato",
+        "Grape Tomato"
+      ]
+    },
+    {
+      "name": "Chilli Seeds",
+      "varieties": [
+        "Green Chilli",
+        "Red Chilli",
+        "Bird's Eye Chilli",
+        "Kashmiri Chilli",
+        "Bhut Jolokia",
+        "Thai Chilli",
+        "Jalapeno"
+      ]
+    },
+    {
+      "name": "Capsicum Seeds",
+      "varieties": [
+        "Green Capsicum",
+        "Red Capsicum",
+        "Yellow Capsicum",
+        "Orange Capsicum",
+        "Bell Pepper"
+      ]
+    },
+    {
+      "name": "Brinjal Seeds",
+      "varieties": [
+        "Long Brinjal",
+        "Round Brinjal",
+        "White Brinjal",
+        "Purple Brinjal",
+        "Striped Brinjal"
+      ]
+    },
+    {
+      "name": "Okra Seeds",
+      "varieties": [
+        "Hybrid Okra",
+        "Green Okra",
+        "Red Okra",
+        "Dwarf Okra"
+      ]
+    },
+    {
+      "name": "Cauliflower Seeds",
+      "varieties": [
+        "White Cauliflower",
+        "Purple Cauliflower",
+        "Orange Cauliflower",
+        "Romanesco Cauliflower"
+      ]
+    },
+    {
+      "name": "Cabbage Seeds",
+      "varieties": [
+        "Green Cabbage",
+        "Red Cabbage",
+        "Savoy Cabbage",
+        "Napa Cabbage"
+      ]
+    },
+    {
+      "name": "Carrot Seeds",
+      "varieties": [
+        "Orange Carrot",
+        "Red Carrot",
+        "Purple Carrot",
+        "Yellow Carrot",
+        "Baby Carrot"
+      ]
+    },
+    {
+      "name": "Radish Seeds",
+      "varieties": [
+        "White Radish",
+        "Red Radish",
+        "Pink Radish",
+        "Daikon Radish"
+      ]
+    },
+    {
+      "name": "Cucumber Seeds",
+      "varieties": [
+        "English Cucumber",
+        "Pickling Cucumber",
+        "Armenian Cucumber",
+        "Lemon Cucumber"
+      ]
+    },
+    {
+      "name": "Bitter Gourd Seeds",
+      "varieties": [
+        "Long Bitter Gourd",
+        "Small Bitter Gourd",
+        "White Bitter Gourd"
+      ]
+    },
+    {
+      "name": "Bottle Gourd Seeds",
+      "varieties": [
+        "Long Bottle Gourd",
+        "Round Bottle Gourd"
+      ]
+    },
+    {
+      "name": "Ridge Gourd Seeds",
+      "varieties": [
+        "Smooth Ridge Gourd",
+        "Ribbed Ridge Gourd"
+      ]
+    },
+    {
+      "name": "Pumpkin Seeds",
+      "varieties": [
+        "Sugar Pumpkin",
+        "Giant Pumpkin",
+        "Miniature Pumpkin",
+        "Jack-o'-Lantern Pumpkin"
+      ]
+    },
+    {
+      "name": "Spinach Seeds",
+      "varieties": [
+        "Savoy Spinach",
+        "Flat-Leaf Spinach",
+        "Baby Spinach",
+        "Red Spinach"
+      ]
+    },
+    {
+      "name": "Coriander Seeds",
+      "varieties": [
+        "Indian Coriander",
+        "Slow-Bolt Coriander",
+        "Vietnamese Coriander"
+      ]
+    },
+    {
+      "name": "Lettuce Seeds",
+      "varieties": [
+        "Iceberg Lettuce",
+        "Romaine Lettuce",
+        "Butterhead Lettuce",
+        "Leaf Lettuce"
+      ]
+    },
+    {
+      "name": "Beetroot Seeds",
+      "varieties": [
+        "Red Beetroot",
+        "Golden Beetroot",
+        "Chioggia Beetroot"
+      ]
+    },
+    {
+      "name": "Peas Seeds",
+      "varieties": [
+        "Garden Peas",
+        "Snow Peas",
+        "Sugar Snap Peas"
+      ]
+    },
+    {
+      "name": "French Beans Seeds",
+      "varieties": [
+        "Green French Beans",
+        "Purple French Beans",
+        "Yellow Wax Beans"
+      ]
+    },
+    {
+      "name": "Onion Seeds",
+      "varieties": [
+        "Red Onion",
+        "White Onion",
+        "Yellow Onion",
+        "Spring Onion"
+      ]
+    },
+    {
+      "name": "Broccoli Seeds",
+      "varieties": [
+        "Calabrese Broccoli",
+        "Purple Sprouting Broccoli",
+        "Romanesco Broccoli"
+      ]
+    },
+    {
+      "name": "Sweet Corn Seeds",
+      "varieties": [
+        "Yellow Sweet Corn",
+        "White Sweet Corn",
+        "Bi-Color Sweet Corn",
+        "Baby Corn"
+      ]
+    }
+  ],
+  
+  "fruitSeeds": [
+    {
+      "name": "Watermelon Seeds",
+      "varieties": [
+        "Sugar Baby Watermelon",
+        "Crimson Sweet Watermelon",
+        "Yellow Watermelon",
+        "Seedless Watermelon"
+      ]
+    },
+    {
+      "name": "Muskmelon Seeds",
+      "varieties": [
+        "Cantaloupe",
+        "Honeydew Melon",
+        "Galia Melon",
+        "Kharbooza"
+      ]
+    },
+    {
+      "name": "Papaya Seeds",
+      "varieties": [
+        "Red Lady Papaya",
+        "Hawaiian Papaya",
+        "Mexican Papaya",
+        "Solo Papaya"
+      ]
+    },
+    {
+      "name": "Strawberry Seeds",
+      "varieties": [
+        "Garden Strawberry",
+        "Alpine Strawberry",
+        "Wild Strawberry"
+      ]
+    },
+    {
+      "name": "Grapes Seeds",
+      "varieties": [
+        "Green Grapes",
+        "Red Grapes",
+        "Black Grapes",
+        "Thompson Seedless"
+      ]
+    },
+    {
+      "name": "Passion Fruit Seeds",
+      "varieties": [
+        "Purple Passion Fruit",
+        "Yellow Passion Fruit"
+      ]
+    },
+    {
+      "name": "Dragon Fruit Seeds",
+      "varieties": [
+        "White-Fleshed Dragon Fruit",
+        "Red-Fleshed Dragon Fruit",
+        "Yellow Dragon Fruit"
+      ]
+    },
+    {
+      "name": "Pomegranate Seeds",
+      "varieties": [
+        "Bhagwa Pomegranate",
+        "Arakta Pomegranate",
+        "Ruby Pomegranate"
+      ]
+    },
+    {
+      "name": "Guava Seeds",
+      "varieties": [
+        "Pink Guava",
+        "White Guava",
+        "Apple Guava",
+        "Thai Guava"
+      ]
+    }
+  ],
+  
+  "flowerSeeds": [
+    {
+      "name": "Marigold Seeds",
+      "varieties": [
+        "African Marigold",
+        "French Marigold",
+        "Signet Marigold"
+      ]
+    },
+    {
+      "name": "Rose Seeds",
+      "varieties": [
+        "Hybrid Tea Rose",
+        "Climbing Rose",
+        "Miniature Rose",
+        "Floribunda Rose"
+      ]
+    },
+    {
+      "name": "Sunflower Seeds",
+      "varieties": [
+        "Giant Sunflower",
+        "Dwarf Sunflower",
+        "Multi-Head Sunflower",
+        "Red Sunflower"
+      ]
+    },
+    {
+      "name": "Hibiscus Seeds",
+      "varieties": [
+        "Tropical Hibiscus",
+        "Hardy Hibiscus",
+        "Rose of Sharon"
+      ]
+    },
+    {
+      "name": "Jasmine Seeds",
+      "varieties": [
+        "Arabian Jasmine",
+        "Night-Blooming Jasmine",
+        "Star Jasmine"
+      ]
+    },
+    {
+      "name": "Petunia Seeds",
+      "varieties": [
+        "Grandiflora Petunia",
+        "Multiflora Petunia",
+        "Wave Petunia"
+      ]
+    },
+    {
+      "name": "Zinnia Seeds",
+      "varieties": [
+        "Giant Zinnia",
+        "Dwarf Zinnia",
+        "Cactus Zinnia"
+      ]
+    },
+    {
+      "name": "Dahlia Seeds",
+      "varieties": [
+        "Dinner Plate Dahlia",
+        "Pompon Dahlia",
+        "Cactus Dahlia"
+      ]
+    },
+    {
+      "name": "Cosmos Seeds",
+      "varieties": [
+        "Pink Cosmos",
+        "White Cosmos",
+        "Orange Cosmos"
+      ]
+    },
+    {
+      "name": "Gerbera Seeds",
+      "varieties": [
+        "Red Gerbera",
+        "Pink Gerbera",
+        "Yellow Gerbera",
+        "Orange Gerbera"
+      ]
+    }
+  ]
+}
