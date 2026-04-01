@@ -265,7 +265,7 @@ const AdminDashboard = () => {
         )}
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
           {statCards.map((card, index) => (
             <Link
               key={index}
@@ -358,7 +358,7 @@ const AdminDashboard = () => {
               Quick Actions
             </h2>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
               <Link
                 to="/admin/user-approval"
                 className={`flex items-center gap-3 p-4 rounded-lg transition-all group relative ${

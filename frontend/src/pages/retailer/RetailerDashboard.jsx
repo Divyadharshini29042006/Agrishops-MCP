@@ -116,7 +116,7 @@ const RetailerDashboard = () => {
       <div style={styles.container}>
 
         {/* Header */}
-        <div style={styles.header}>
+        <div style={styles.header} className="retailer-header">
           <div>
             <h1 style={styles.pageTitle}>Retailer Dashboard</h1>
             <p style={styles.pageSubtitle}>Welcome back, {user?.name}!</p>
@@ -178,16 +178,16 @@ const RetailerDashboard = () => {
         </div>
 
         {/* Stat Cards */}
-        <div style={styles.statGrid}>
+        <div style={styles.statGrid} className="retailer-stat-grid">
           {statCards.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <Link key={index} to={stat.link} style={styles.statCard}>
+              <Link key={index} to={stat.link} style={styles.statCard} className="retailer-stat-card">
                 <div>
                   <p style={styles.statLabel}>{stat.title}</p>
                   <p style={styles.statValue}>{stat.value}</p>
                 </div>
-                <div style={{ ...styles.statIconWrap, backgroundColor: stat.bg }}>
+                <div style={{ ...styles.statIconWrap, backgroundColor: stat.bg }} className="retailer-stat-icon-wrap">
                   <IconComponent style={{ width: 28, height: 28, color: stat.accent }} />
                 </div>
               </Link>
@@ -196,31 +196,31 @@ const RetailerDashboard = () => {
         </div>
 
         {/* Revenue Cards — flat solid colours, no gradient */}
-        <div style={styles.revenueGrid}>
-          <div style={{ ...styles.revenueCard, backgroundColor: '#16A34A' }}>
+        <div style={styles.revenueGrid} className="retailer-revenue-grid">
+          <div style={{ ...styles.revenueCard, backgroundColor: '#16A34A' }} className="retailer-revenue-card">
             <div style={styles.revenueCardHeader}>
               <span style={styles.revenueCardTitle}>Today's Revenue</span>
               <HiCurrencyRupee style={{ width: 26, height: 26, opacity: 0.85 }} />
             </div>
-            <p style={styles.revenueAmount}>₹{stats?.revenue?.today?.toLocaleString() || 0}</p>
+            <p style={styles.revenueAmount} className="retailer-revenue-amount">₹{stats?.revenue?.today?.toLocaleString() || 0}</p>
             <p style={styles.revenueFooter}>{stats?.orders?.today || 0} orders today</p>
           </div>
 
-          <div style={{ ...styles.revenueCard, backgroundColor: '#2563EB' }}>
+          <div style={{ ...styles.revenueCard, backgroundColor: '#2563EB' }} className="retailer-revenue-card">
             <div style={styles.revenueCardHeader}>
               <span style={styles.revenueCardTitle}>This Week</span>
               <HiChartBar style={{ width: 26, height: 26, opacity: 0.85 }} />
             </div>
-            <p style={styles.revenueAmount}>₹{stats?.revenue?.week?.toLocaleString() || 0}</p>
+            <p style={styles.revenueAmount} className="retailer-revenue-amount">₹{stats?.revenue?.week?.toLocaleString() || 0}</p>
             <p style={styles.revenueFooter}>{stats?.orders?.week || 0} orders this week</p>
           </div>
 
-          <div style={{ ...styles.revenueCard, backgroundColor: '#7C3AED' }}>
+          <div style={{ ...styles.revenueCard, backgroundColor: '#7C3AED' }} className="retailer-revenue-card">
             <div style={styles.revenueCardHeader}>
               <span style={styles.revenueCardTitle}>This Month</span>
               <HiTrendingUp style={{ width: 26, height: 26, opacity: 0.85 }} />
             </div>
-            <p style={styles.revenueAmount}>₹{stats?.revenue?.month?.toLocaleString() || 0}</p>
+            <p style={styles.revenueAmount} className="retailer-revenue-amount">₹{stats?.revenue?.month?.toLocaleString() || 0}</p>
             <p style={styles.revenueFooter}>{stats?.orders?.month || 0} orders this month</p>
           </div>
         </div>
@@ -228,8 +228,8 @@ const RetailerDashboard = () => {
         {/* Quick Actions */}
         <div style={styles.card}>
           <h2 style={styles.sectionTitle}>Quick Actions</h2>
-          <div style={styles.quickActionsGrid}>
-            <Link to="/retailer/suppliers/products" style={{ ...styles.quickActionBtn, backgroundColor: '#2563EB' }}>
+          <div style={styles.quickActionsGrid} className="retailer-quick-actions-grid">
+            <Link to="/retailer/suppliers/products" style={{ ...styles.quickActionBtn, backgroundColor: '#2563EB' }} className="retailer-quick-action-btn">
               <div style={styles.quickActionIconWrap}>
                 <HiShoppingCart style={{ width: 22, height: 22 }} />
               </div>
@@ -239,7 +239,7 @@ const RetailerDashboard = () => {
               </div>
             </Link>
 
-            <Link to="/retailer/inventory" style={{ ...styles.quickActionBtn, backgroundColor: '#16A34A' }}>
+            <Link to="/retailer/inventory" style={{ ...styles.quickActionBtn, backgroundColor: '#16A34A' }} className="retailer-quick-action-btn">
               <div style={styles.quickActionIconWrap}>
                 <HiCube style={{ width: 22, height: 22 }} />
               </div>
@@ -249,7 +249,7 @@ const RetailerDashboard = () => {
               </div>
             </Link>
 
-            <Link to="/retailer/orders" style={{ ...styles.quickActionBtn, backgroundColor: '#7C3AED' }}>
+            <Link to="/retailer/orders" style={{ ...styles.quickActionBtn, backgroundColor: '#7C3AED' }} className="retailer-quick-action-btn">
               <div style={styles.quickActionIconWrap}>
                 <HiClipboardList style={{ width: 22, height: 22 }} />
               </div>
@@ -262,7 +262,7 @@ const RetailerDashboard = () => {
         </div>
 
         {/* Bottom Grid */}
-        <div style={styles.bottomGrid}>
+        <div style={styles.bottomGrid} className="retailer-bottom-grid">
           {stats?.topProducts?.length > 0 && (
             <div style={styles.card}>
               <div style={styles.cardHeader}>
@@ -335,7 +335,7 @@ const RetailerDashboard = () => {
               <h2 style={styles.sectionTitle}>Recent Purchases from Suppliers</h2>
               <Link to="/retailer/inventory" style={styles.viewAllLink}>Browse Inventory →</Link>
             </div>
-            <div style={styles.purchasesGrid}>
+            <div style={styles.purchasesGrid} className="retailer-purchases-grid">
               {stats.recentPurchases.map((purchase) => (
                 <Link key={purchase._id} to={`/retailer/orders/${purchase._id}`} style={styles.purchaseCard}>
                   <div style={{
@@ -376,6 +376,56 @@ const RetailerDashboard = () => {
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes spinIcon { to { transform: rotate(360deg); } }
+
+        /* ✅ MOBILE RESPONSIVENESS */
+        @media (max-width: 640px) {
+          .retailer-stat-grid, .retailer-revenue-grid, .retailer-quick-actions-grid, .retailer-purchases-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          
+          .retailer-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 16px !important;
+          }
+
+          .retailer-stat-card {
+            padding: 14px !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            gap: 12px !important;
+          }
+
+          .retailer-stat-icon-wrap {
+            order: -1 !important;
+            padding: 8px !important;
+          }
+
+          .retailer-stat-value {
+            font-size: 20px !important;
+          }
+
+          .retailer-revenue-card {
+            padding: 16px !important;
+          }
+
+          .retailer-revenue-amount {
+            font-size: 20px !important;
+          }
+
+          .retailer-quick-action-btn {
+            padding: 12px !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            text-align: left !important;
+          }
+
+          .retailer-bottom-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
     </div>
   );

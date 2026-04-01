@@ -251,21 +251,21 @@ const Products = () => {
         </div>
 
         {/* Filter Button and Sort Bar */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           {/* Filter Button */}
           <button
             onClick={() => setShowFilters(true)}
-            className="flex items-center gap-2 bg-white border border-gray-300 px-4 py-2.5 rounded-lg hover:bg-gray-50 shadow-sm transition-colors"
+            className="flex items-center justify-center gap-2 bg-white border border-gray-300 px-4 py-2.5 rounded-lg hover:bg-gray-50 shadow-sm transition-colors text-sm md:text-base font-medium text-gray-700 min-h-[44px]"
           >
-            <HiFilter className="w-5 h-5 text-gray-700" />
-            <span className="font-medium text-gray-700">Filter</span>
+            <HiFilter className="w-5 h-5" />
+            <span>Filter</span>
           </button>
 
           {/* Sort Dropdown */}
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white shadow-sm"
+            className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white shadow-sm text-sm md:text-base min-h-[44px]"
           >
             <option value="">Sort By</option>
             <option value="pricing.finalPrice">Price: Low to High</option>
@@ -285,8 +285,8 @@ const Products = () => {
               onClick={() => setShowFilters(false)}
             />
 
-            {/* ✅ Filter Sidebar from RIGHT */}
-            <div className="absolute top-0 right-0 bottom-0 w-full sm:w-96 bg-white shadow-2xl flex flex-col animate-slideInRight">
+            {/* ✅ Filter Sidebar from RIGHT (Full width on mobile) */}
+            <div className="absolute top-0 right-0 bottom-0 w-full md:w-96 bg-white shadow-2xl flex flex-col animate-slideInRight">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
                 <div className="flex items-center gap-3">
@@ -456,9 +456,8 @@ const Products = () => {
 
         {/* Products Grid - Full width */}
         <main className="w-full">
-          {/* Loading State */}
           {loading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
               {[...Array(10)].map((_, i) => (
                 <div key={i} className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
                   <Skeleton variant="rectangular" height="180px" className="rounded-xl" />
@@ -492,7 +491,7 @@ const Products = () => {
           ) : (
             <>
               {/* Products Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
                 {products.map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))}

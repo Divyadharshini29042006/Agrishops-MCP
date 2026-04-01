@@ -255,7 +255,7 @@ const Home = () => {
                     <span className="bg-green-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 shadow-lg">
                       <GiWheat className="text-lg" /> {slide.badge}
                     </span>
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-lg">
+                    <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-lg">
                       {slide.title}
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-100 leading-relaxed max-w-2xl drop-shadow-md">
@@ -319,7 +319,7 @@ const Home = () => {
       <section className="py-10 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Shop by Categories</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-8">
             {categories.map((cat, index) => (
               <Link key={index} to={cat.link} className="group flex flex-col items-center">
                 <div className="relative w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 mb-2 transform transition-all duration-300 group-hover:scale-105">
@@ -407,7 +407,7 @@ const Home = () => {
       {/* ── Stats ── */}
       <section className="py-20 bg-gradient-to-r from-green-600 via-green-700 to-green-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="space-y-2 transform transition-all duration-300 hover:scale-105">
               <div className="text-5xl md:text-6xl font-bold text-white mb-2">10,000+</div>
               <div className="text-green-100 text-base md:text-lg font-medium">{t('home.stats.products')}</div>

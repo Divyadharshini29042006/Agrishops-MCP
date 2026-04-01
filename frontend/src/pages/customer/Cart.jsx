@@ -174,8 +174,8 @@ const Cart = () => {
                   {/* Items from this seller */}
                   <div className="divide-y divide-gray-200">
                     {group.items.map((item) => (
-                      <div key={item._id} className="p-6">
-                        <div className="flex gap-4">
+                      <div key={item._id} className="p-4 md:p-6">
+                        <div className="flex flex-col sm:flex-row gap-4">
                           {/* Product Image */}
                           <Link
                             to={`/products/${item.product?._id}`}
@@ -184,7 +184,7 @@ const Cart = () => {
                             <img
                               src={item.product?.images?.[0]?.url || '/placeholder-product.png'}
                               alt={item.product?.name}
-                              className="w-24 h-24 object-contain bg-gray-50 rounded-lg border border-gray-200"
+                              className="w-full sm:w-24 h-32 sm:h-24 object-contain bg-gray-50 rounded-lg border border-gray-200"
                             />
                           </Link>
 
@@ -199,9 +199,9 @@ const Cart = () => {
                             <p className="text-sm text-gray-600 mt-1">
                               {item.product?.brand && `Brand: ${item.product.brand}`}
                             </p>
-                            <div className="flex items-center gap-4 mt-3">
+                             <div className="flex flex-wrap items-center gap-4 mt-3">
                               {/* Price */}
-                              <div>
+                              <div className="flex-1 sm:flex-none">
                                 <p className="text-lg font-bold text-gray-900">
                                   ₹{item.product?.pricing?.finalPrice?.toFixed(2)}
                                 </p>

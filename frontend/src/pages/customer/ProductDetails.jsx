@@ -485,7 +485,7 @@ const ProductDetails = () => {
             {product.variants && product.variants.length > 0 && (
               <div>
                 <h3 className="font-bold text-gray-900 mb-3">Available Sizes</h3>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.variants.map((variant, index) => {
                     const variantDiscount = variant.basePrice > variant.finalPrice
                       ? Math.round(((variant.basePrice - variant.finalPrice) / variant.basePrice) * 100)
@@ -720,26 +720,26 @@ const ProductDetails = () => {
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200">
-              <div className="flex items-center gap-2">
-                <HiTruck className="w-6 h-6 text-green-600" />
+            <div className="flex flex-wrap md:grid md:grid-cols-3 gap-4 pt-6 border-t border-gray-200">
+              <div className="flex items-center gap-2 min-w-[120px]">
+                <HiTruck className="w-6 h-6 text-green-600 flex-shrink-0" />
                 <div>
-                  <p className="text-xs text-gray-500">Fast & Reliable</p>
-                  <p className="text-sm font-semibold text-gray-900">Delivery</p>
+                  <p className="text-[10px] md:text-xs text-gray-500">Fast & Reliable</p>
+                  <p className="text-xs md:text-sm font-semibold text-gray-900">Delivery</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <HiShieldCheck className="w-6 h-6 text-green-600" />
+              <div className="flex items-center gap-2 min-w-[120px]">
+                <HiShieldCheck className="w-6 h-6 text-green-600 flex-shrink-0" />
                 <div>
-                  <p className="text-xs text-gray-500">Safe Payment</p>
-                  <p className="text-sm font-semibold text-gray-900">COD / UPI</p>
+                  <p className="text-[10px] md:text-xs text-gray-500">Safe Payment</p>
+                  <p className="text-xs md:text-sm font-semibold text-gray-900">COD / UPI</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <HiUsers className="w-6 h-6 text-green-600" />
+              <div className="flex items-center gap-2 min-w-[120px]">
+                <HiUsers className="w-6 h-6 text-green-600 flex-shrink-0" />
                 <div>
-                  <p className="text-xs text-gray-500">10 Lakh+</p>
-                  <p className="text-sm font-semibold text-gray-900">Farmers</p>
+                  <p className="text-[10px] md:text-xs text-gray-500">10 Lakh+</p>
+                  <p className="text-xs md:text-sm font-semibold text-gray-900">Farmers</p>
                 </div>
               </div>
             </div>

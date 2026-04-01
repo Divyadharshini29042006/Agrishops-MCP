@@ -205,7 +205,7 @@ const Navbar = () => {
               {isRetailer && <span className="ml-2 text-xs font-semibold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Retailer</span>}
             </Link>
 
-            {/* Search Bar (Hide for Admin, Supplier, Retailer) */}
+            {/* Desktop Search Bar (Hide for Admin, Supplier, Retailer) */}
             {!isAdmin && !isSupplier && !isRetailer && (
               <div className="hidden md:flex flex-1 max-w-xl mx-8">
                 <form onSubmit={handleSearch} className="w-full">
@@ -470,6 +470,30 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
+        {/* Mobile Search Bar (Only for public/customers) */}
+        {!isAdmin && !isSupplier && !isRetailer && (
+          <div className="md:hidden px-4 pb-3">
+            <form onSubmit={handleSearch} className="w-full">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={t('common.searchFor')}
+                  className="w-full px-4 py-2.5 pl-10 pr-20 border border-gray-300 rounded-lg focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all text-sm"
+                />
+                <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
+                <button
+                  type="submit"
+                  className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded-md transition-colors text-xs font-medium"
+                >
+                  {t('common.search') || 'Search'}
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
 
       {/* ✅ CLEAN MEGA MENU CATEGORIES BAR (Only for customers/public) */}
@@ -713,7 +737,53 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile Menu Content */}
+            {/* Mobile Navigation List - Categories for public/customers */}
+            {!isAdmin && !isSupplier && !isRetailer && (
+              <div className="pb-3 border-b border-gray-200">
+                <p className="text-xs font-semibold text-gray-500 uppercase mb-2">Categories</p>
+                <div className="flex flex-col gap-1">
+                  {loading ? (
+                    <div className="py-2 text-sm text-gray-400">Loading categories...</div>
+                  ) : (
+                    navItems.map((item, index) => (
+                      <div key={index}>
+                        <Link
+                          to={item.path}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="flex items-center justify-between py-2 text-gray-700 font-medium hover:text-green-600"
+                        >
+                          <TranslatedText text={item.name} />
+                          {item.hasDropdown && <HiChevronDown className="text-gray-400" />}
+                        </Link>
+                        {item.hasDropdown && (
+                          <div className="pl-4 pb-2 grid grid-cols-1 gap-1">
+                            {item.children?.slice(0, 6).map((child, cIdx) => (
+                              <Link
+                                key={cIdx}
+                                to={`/products?category=${child.slug}`}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-sm text-gray-500 py-1"
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                            <Link
+                              to={item.path}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="text-xs text-green-600 font-bold py-1"
+                            >
+                              Browse All
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Mobile Menu Content based on User Role */}
             {isAdmin ? (
               <>
                 <div className="pb-3 border-b border-gray-200">

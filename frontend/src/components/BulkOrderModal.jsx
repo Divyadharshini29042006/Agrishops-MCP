@@ -157,7 +157,7 @@ const BulkOrderModal = ({ product, selectedVariant, quantity, onClose }) => {
       <div style={styles.modal} className="bom-modal">
 
         {/* ── Header ── */}
-        <div style={styles.header}>
+        <div style={styles.header} className="bom-header">
           <div style={styles.headerLeft}>
             <div style={styles.headerIcon}>
               <HiLightningBolt size={18} color="#1a1a1a" />
@@ -384,7 +384,7 @@ const BulkOrderModal = ({ product, selectedVariant, quantity, onClose }) => {
         </div>
 
         {/* ── Footer ── */}
-        <div style={styles.footer}>
+        <div style={styles.footer} className="bom-footer">
           <div style={styles.footerLeft}>
             <span style={styles.footerDot('#22c55e')}></span>
             <span style={styles.footerTag}>Market Live</span>
@@ -716,6 +716,65 @@ const css = `
     border-color: #93c5fd !important;
     box-shadow: 0 0 0 3px rgba(147,197,253,0.25) !important;
     background: #ffffff !important;
+  }
+
+  /* ✅ MOBILE RESPONSIVENESS */
+  @media (max-width: 768px) {
+    .bom-modal {
+      max-height: 100vh !important;
+      height: 100vh !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+    }
+    
+    .bom-modal > div:nth-child(2) {
+      flex-direction: column !important;
+      overflow-y: auto !important;
+    }
+
+    .bom-modal > div:nth-child(2) > div {
+      width: 100% !important;
+      flex: none !important;
+      border-right: none !important;
+      border-bottom: 1px solid #f3f4f6 !important;
+      padding: 16px !important;
+      height: auto !important;
+      overflow-y: visible !important;
+    }
+
+    .bom-modal > div:nth-child(2) > div:last-child {
+      border-bottom: none !important;
+    }
+
+    .bom-header {
+      padding: 12px 16px !important;
+    }
+
+    .bom-header-title {
+      font-size: 15px !important;
+    }
+
+    .bom-footer {
+      padding: 12px 16px !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+      text-align: center !important;
+    }
+    
+    .bom-footer-right {
+      text-align: center !important;
+    }
+
+    .bom-variant-row {
+      padding: 12px !important;
+    }
+    
+    .bom-qty-btn {
+      width: 44px !important;
+      height: 44px !important;
+    }
   }
 `;
 

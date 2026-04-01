@@ -148,7 +148,7 @@ const SupplierDashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
           {statCards.map((stat, index) => {
             const Icon = stat.icon;
             return (
@@ -170,7 +170,7 @@ const SupplierDashboard = () => {
         {/* Quick Actions */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link to="/supplier/products/add" className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg transition-all">
               <HiPlusCircle className="w-6 h-6" />
               <div>

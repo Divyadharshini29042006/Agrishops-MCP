@@ -42,9 +42,11 @@ const ReviewModal = ({ isOpen, onClose, order, onReviewSubmitted }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-300">
       <div 
-        className="relative w-full max-w-md bg-white rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] overflow-hidden animate-in fade-in zoom-in duration-200"
+        className="relative w-full max-w-md max-h-[90vh] bg-white rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] overflow-y-auto animate-in fade-in zoom-in duration-200"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         onClick={(e) => e.stopPropagation()}
       >
+        <style>{`.zoom-in::-webkit-scrollbar { display: none; }`}</style>
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <div>
@@ -63,18 +65,16 @@ const ReviewModal = ({ isOpen, onClose, order, onReviewSubmitted }) => {
           {/* Star Selection */}
           <div className="flex flex-col items-center mb-8">
             <p className="text-sm font-medium text-gray-700 mb-3">How was your experience?</p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}
                   type="button"
                   onClick={() => setRating(star)}
-                  onMouseEnter={() => setHover(star)}
-                  onMouseLeave={() => setHover(0)}
-                  className="transition-transform hover:scale-110 focus:outline-none"
+                  className="transition-transform hover:scale-110 focus:outline-none p-1"
                 >
                   <HiStar 
-                    className={`w-10 h-10 ${
+                    className={`w-10 h-10 sm:w-12 sm:h-12 ${
                       (hover || rating) >= star ? 'text-[#F59E0B]' : 'text-[#D1D5DB]'
                     }`}
                   />
