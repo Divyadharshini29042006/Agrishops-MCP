@@ -14,6 +14,7 @@ import {
 import { GiWheat } from 'react-icons/gi';
 import ProductCard from '../../components/ProductCard';
 import { useLanguage } from '../../hooks/useLanguage';
+import { useAuth } from '../../hooks/useAuth';
 import api from '../../services/api';
 import { getPublicImageUrl } from '../../utils/imageUtils';
 
