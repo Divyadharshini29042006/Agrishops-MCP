@@ -8,6 +8,7 @@ import {
 import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -182,7 +183,7 @@ const Cart = () => {
                             className="flex-shrink-0"
                           >
                             <img
-                              src={item.product?.images?.[0]?.url || '/placeholder-product.png'}
+                              src={getPublicImageUrl(item.product?.images?.[0]?.url) || '/placeholder-product.png'}
                               alt={item.product?.name}
                               className="w-full sm:w-24 h-32 sm:h-24 object-contain bg-gray-50 rounded-lg border border-gray-200"
                             />

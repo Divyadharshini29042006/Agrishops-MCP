@@ -9,6 +9,7 @@ import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -360,10 +361,7 @@ const Checkout = () => {
                 <div className="space-y-3 mb-5 max-h-56 overflow-y-auto pr-1">
                   {cart.map(item => {
                     const price = item.product?.pricing?.finalPrice || 0;
-                    const imgUrl = item.product?.images?.[0]?.url;
-                    const fullImg = imgUrl
-                      ? imgUrl.startsWith('http') ? imgUrl : `${import.meta.env.VITE_API_URL}${imgUrl}`
-                      : '/placeholder.png';
+                    const fullImg = getPublicImageUrl(item.product?.images?.[0]?.url) || '/placeholder.png';
 
                     return (
                       <div key={item._id} className="flex items-center gap-3">

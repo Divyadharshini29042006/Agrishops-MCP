@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { HiClock, HiCheckCircle, HiXCircle, HiDocumentText } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const WholesaleInquiries = () => {
   const { showSuccess, showError } = useToast();
@@ -85,7 +86,7 @@ const WholesaleInquiries = () => {
               <div key={inquiry._id} className="bg-white rounded-xl shadow-sm border p-6">
                 <div className="flex items-start gap-4">
                   <img
-                    src={inquiry.product?.images?.[0]?.url || '/placeholder.png'}
+                    src={getPublicImageUrl(inquiry.product?.images?.[0]?.url) || '/placeholder.png'}
                     alt={inquiry.product?.name}
                     className="w-20 h-20 object-cover rounded-lg"
                   />

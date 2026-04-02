@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { HiCheckCircle, HiXCircle, HiEye, HiShoppingBag, HiCurrencyRupee } from 'react-icons/hi';
 import { useLanguage } from '../../hooks/useLanguage';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const ProductModeration = () => {
   const { t } = useLanguage();
@@ -134,7 +135,7 @@ const ProductModeration = () => {
                 <div className="relative h-48 bg-gray-200">
                   {product.images && product.images[0] ? (
                     <img
-                      src={product.images[0].url || product.images[0]}
+                      src={getPublicImageUrl(product.images[0].url || product.images[0])}
                       alt={product.name}
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -290,7 +291,7 @@ const ProductModeration = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <img
-                      src={selectedProduct.images?.[0]?.url || selectedProduct.images?.[0] || 'https://via.placeholder.com/600x400?text=No+Image'}
+                      src={getPublicImageUrl(selectedProduct.images?.[0]?.url || selectedProduct.images?.[0]) || 'https://via.placeholder.com/600x400?text=No+Image'}
                       alt={selectedProduct.name}
                       className="w-full rounded-lg"
                       onError={(e) => {

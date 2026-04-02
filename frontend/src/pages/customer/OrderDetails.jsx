@@ -7,6 +7,7 @@ import {
   HiCurrencyRupee, HiDocumentText, HiChevronRight
 } from 'react-icons/hi';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 import useToast from '../../hooks/useToast';
 
 const OrderDetails = () => {
@@ -202,7 +203,7 @@ const OrderDetails = () => {
               <div key={index} className="p-6 flex items-start gap-4 hover:bg-gray-50 transition-colors">
                 <div className="w-20 h-20 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-200">
                   <img
-                    src={item.product?.images?.[0]?.url || '/placeholder-product.png'}
+                    src={getPublicImageUrl(item.product?.images?.[0]?.url) || '/placeholder-product.png'}
                     alt={item.productName}
                     className="w-full h-full object-cover"
                   />

@@ -10,6 +10,7 @@ import {
   HiCheckCircle
 } from 'react-icons/hi';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 export default function StockMonitor() {
   const [products, setProducts] = useState([]);
@@ -296,7 +297,7 @@ export default function StockMonitor() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <img
-                          src={getProductImage(product)}
+                          src={getPublicImageUrl(getProductImage(product))}
                           alt={product.name}
                           className="h-12 w-12 rounded-lg object-cover"
                           onError={(e) => {

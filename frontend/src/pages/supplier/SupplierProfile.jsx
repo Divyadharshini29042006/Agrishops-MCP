@@ -8,6 +8,7 @@ import {
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const SupplierProfile = () => {
   const { user, updateProfile } = useAuth();
@@ -23,7 +24,7 @@ const SupplierProfile = () => {
   });
 
   const [brandLogo, setBrandLogo] = useState(null);
-  const [logoPreview, setLogoPreview] = useState(user?.businessDetails?.brandLogo?.url || '');
+  const [logoPreview, setLogoPreview] = useState(getPublicImageUrl(user?.businessDetails?.brandLogo?.url) || '');
   const [isUploading, setIsUploading] = useState(false);
 
   const [profileData, setProfileData] = useState({
@@ -256,7 +257,7 @@ const SupplierProfile = () => {
               {user?.businessDetails?.brandLogo?.url ? (
                 <div className="w-24 h-24 rounded-full bg-white border-4 border-white/30 shadow-xl overflow-hidden">
                   <img
-                    src={user.businessDetails.brandLogo.url}
+                    src={getPublicImageUrl(user.businessDetails.brandLogo.url)}
                     alt="Brand Logo"
                     className="w-full h-full object-cover"
                   />

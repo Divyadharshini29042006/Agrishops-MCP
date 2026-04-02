@@ -9,6 +9,7 @@ import {
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 import ExpiryAlert from '../../components/retailer/ExpiryAlert';
 import MerchantStockAlert from '../../components/MerchantStockAlert';
 
@@ -274,7 +275,7 @@ const RetailerDashboard = () => {
                   <div key={product._id} style={styles.listRow}>
                     <div style={styles.rankBadge}>#{index + 1}</div>
                     <img
-                      src={product.images?.[0]?.url || '/placeholder-product.png'}
+                      src={getPublicImageUrl(product.images?.[0]?.url) || '/placeholder-product.png'}
                       alt={product.name}
                       style={styles.productThumb}
                     />

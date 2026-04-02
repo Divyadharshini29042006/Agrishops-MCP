@@ -5,6 +5,7 @@ import { HiStar, HiChevronDown, HiX, HiLightningBolt } from 'react-icons/hi';
 import { useCart } from '../hooks/useCart';
 import { useAuth } from '../hooks/useAuth';
 import useToast from '../hooks/useToast';
+import { getPublicImageUrl } from '../utils/imageUtils';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -16,12 +17,8 @@ const ProductCard = ({ product }) => {
   const [addingVariant, setAddingVariant] = useState(null);
   const [imgError, setImgError] = useState(false);
 
-  // ✅ Get product image — /uploads/ paths are proxied by Vite to the backend.
-  // External http/https URLs are used as-is.
-  // Ignore placeholder URLs if they exist in the data from previous legacy scripts
-  const rawImage = product.images?.[0]?.url || '';
-  const isPlaceholder = rawImage.includes('placehold.co');
-  const productImage = isPlaceholder ? '' : rawImage;
+  // ✅ Get product image — resolved dynamically to backend URL
+  const productImage = getPublicImageUrl(product.images?.[0]?.url);
 
   // ✅ Calculate discount percentage
   const basePrice = product.pricing?.basePrice || 0;

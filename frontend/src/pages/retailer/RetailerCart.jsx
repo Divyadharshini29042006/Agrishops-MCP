@@ -8,6 +8,7 @@ import {
 import useToast from '../../hooks/useToast';
 import { useCart } from '../../hooks/useCart';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const RetailerCart = () => {
   const { cart, loading, updateQuantity: updateCartQuantity, removeFromCart, clearCart } = useCart();
@@ -143,7 +144,7 @@ const RetailerCart = () => {
                   >
                     {/* Product Image */}
                     <img
-                      src={item.product.images?.[0]?.url || '/placeholder.png'}
+                      src={getPublicImageUrl(item.product.images?.[0]?.url) || '/placeholder.png'}
                       alt={item.product.name}
                       className="w-24 h-24 object-cover rounded-lg"
                     />

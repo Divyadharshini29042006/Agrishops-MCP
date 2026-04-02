@@ -7,6 +7,7 @@ import {
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const RetailerProfile = () => {
   const { user, updateProfile } = useAuth();
@@ -71,7 +72,7 @@ const RetailerProfile = () => {
         },
         usageType: user.usageType || 'both',
       });
-      setLogoPreview(user.businessDetails?.brandLogo?.url || '');
+      setLogoPreview(getPublicImageUrl(user.businessDetails?.brandLogo?.url) || '');
     }
   }, [user]);
 

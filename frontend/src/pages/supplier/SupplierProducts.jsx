@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const SupplierProducts = () => {
   const { showSuccess, showError } = useToast();
@@ -393,7 +394,7 @@ const SupplierProducts = () => {
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-4">
                           <img
-                            src={product.images?.[0]?.url || product.images?.[0] || '/placeholder-product.png'}
+                            src={getPublicImageUrl(product.images?.[0]?.url || product.images?.[0] || '/placeholder-product.png')}
                             alt={product.name}
                             className="w-16 h-16 object-cover rounded-lg border border-gray-200"
                             onError={(e) => {
@@ -563,7 +564,7 @@ const SupplierProducts = () => {
                     {/* Main Image */}
                     <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
                       <img
-                        src={detailsModal.product.images[currentImageIndex]?.url || detailsModal.product.images[currentImageIndex]}
+                        src={getPublicImageUrl(detailsModal.product.images[currentImageIndex]?.url || detailsModal.product.images[currentImageIndex])}
                         alt={`${detailsModal.product.name} - Image ${currentImageIndex + 1}`}
                         className="w-full h-full object-contain"
                         onError={(e) => {

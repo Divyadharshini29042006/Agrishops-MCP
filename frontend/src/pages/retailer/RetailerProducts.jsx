@@ -8,6 +8,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const RetailerProducts = () => {
   const { showSuccess, showError } = useToast();
@@ -402,7 +403,7 @@ const RetailerProducts = () => {
                         <div className="flex items-center gap-4">
                           {product.images?.[0]?.url ? (
                             <img
-                              src={product.images[0].url}
+                              src={getPublicImageUrl(product.images[0].url)}
                               alt={product.name}
                               className="w-16 h-16 object-cover rounded-lg border border-gray-200"
                               onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
@@ -553,7 +554,7 @@ const RetailerProducts = () => {
                   <div className="relative">
                     <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
                       <img
-                        src={detailsModal.product.images[currentImageIndex]?.url || detailsModal.product.images[currentImageIndex]}
+                        src={getPublicImageUrl(detailsModal.product.images[currentImageIndex]?.url || detailsModal.product.images[currentImageIndex])}
                         alt={`${detailsModal.product.name} - Image ${currentImageIndex + 1}`}
                         className="w-full h-full object-contain"
                         onError={(e) => {
@@ -597,7 +598,7 @@ const RetailerProducts = () => {
                               }`}
                           >
                             <img
-                              src={image.url || image}
+                              src={getPublicImageUrl(image.url || image)}
                               alt={`Thumbnail ${idx + 1}`}
                               className="w-full h-full object-cover"
                             />

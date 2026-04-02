@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 import ReviewModal from '../../components/ReviewModal';
 
 
@@ -271,7 +272,7 @@ const CustomerOrders = () => {
                       <div key={index} className="flex gap-4">
                         <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                           <img
-                            src={item.product?.images?.[0]?.url || '/placeholder-product.png'}
+                            src={getPublicImageUrl(item.product?.images?.[0]?.url) || '/placeholder-product.png'}
                             alt={item.productName}
                             className="w-full h-full object-cover"
                           />

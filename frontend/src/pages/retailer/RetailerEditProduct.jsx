@@ -8,6 +8,7 @@ import {
 import useToast from '../../hooks/useToast';
 import { useAuth } from '../../hooks/useAuth';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const RetailerEditProduct = () => {
     const { id } = useParams();
@@ -524,7 +525,7 @@ const RetailerEditProduct = () => {
 
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                         <h2 className="text-xl font-semibold text-gray-900 mb-6">Product Images</h2>
-                        <div className="grid grid-cols-5 gap-4 mb-4">{existingImages.map((img, i) => <div key={i} className="relative"><img src={img.url} className="w-full h-24 object-cover rounded" /><button type="button" onClick={() => removeExistingImage(i)} className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1"><HiX className="w-3 h-3" /></button></div>)}</div>
+                        <div className="grid grid-cols-5 gap-4 mb-4">{existingImages.map((img, i) => <div key={i} className="relative"><img src={getPublicImageUrl(img.url)} className="w-full h-24 object-cover rounded" /><button type="button" onClick={() => removeExistingImage(i)} className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1"><HiX className="w-3 h-3" /></button></div>)}</div>
                         <div className="border-2 border-dashed p-6 text-center bg-gray-50 rounded-lg"><input type="file" multiple accept="image/*" onChange={handleNewImageChange} id="new-imgs" className="hidden" /><label htmlFor="new-imgs" className="cursor-pointer text-blue-600 font-bold block">Click to upload more images</label></div>
                         <div className="grid grid-cols-5 gap-4 mt-4">{newImagePreviews.map((pre, i) => <div key={i} className="relative"><img src={pre} className="w-full h-24 object-cover rounded border-2 border-green-400" /><button type="button" onClick={() => removeNewImage(i)} className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1"><HiX className="w-3 h-3" /></button></div>)}</div>
                     </div>

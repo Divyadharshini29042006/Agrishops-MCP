@@ -8,6 +8,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const RetailerInventory = () => {
   const { showSuccess, showError } = useToast();
@@ -270,7 +271,7 @@ const RetailerInventory = () => {
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-4">
                             <img
-                              src={product.images?.[0]?.url || '/placeholder-product.png'}
+                              src={getPublicImageUrl(product.images?.[0]?.url) || '/placeholder-product.png'}
                               alt={product.name}
                               className="w-16 h-16 object-cover rounded-lg border border-gray-200"
                             />

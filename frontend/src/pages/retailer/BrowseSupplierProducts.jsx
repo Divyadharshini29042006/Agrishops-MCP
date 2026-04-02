@@ -6,6 +6,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const BrowseSupplierProducts = () => {
   const { showSuccess, showError, showInfo } = useToast();
@@ -229,7 +230,7 @@ const BrowseSupplierProducts = () => {
                 {/* Product Image */}
                 <div className="relative h-48 bg-gray-100">
                   <img
-                    src={product.images?.[0]?.url || '/placeholder-product.png'}
+                    src={getPublicImageUrl(product.images?.[0]?.url) || '/placeholder-product.png'}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -250,7 +251,7 @@ const BrowseSupplierProducts = () => {
                   <div className="flex items-center gap-2 mb-3">
                     {product.seller?.businessDetails?.brandLogo?.url ? (
                       <img
-                        src={product.seller.businessDetails.brandLogo.url}
+                        src={getPublicImageUrl(product.seller.businessDetails.brandLogo.url)}
                         alt={product.seller.name}
                         className="w-6 h-6 object-contain rounded"
                       />
@@ -332,7 +333,7 @@ const BrowseSupplierProducts = () => {
                 {/* Product Info */}
                 <div className="flex gap-4">
                   <img
-                    src={purchaseModal.product.images?.[0]?.url || '/placeholder-product.png'}
+                    src={getPublicImageUrl(purchaseModal.product.images?.[0]?.url) || '/placeholder-product.png'}
                     alt={purchaseModal.product.name}
                     className="w-24 h-24 object-cover rounded-lg border border-gray-200"
                   />

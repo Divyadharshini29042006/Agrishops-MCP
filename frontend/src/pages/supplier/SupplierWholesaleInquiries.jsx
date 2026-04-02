@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const SupplierWholesaleInquiries = () => {
     const { showSuccess, showError } = useToast();
@@ -266,7 +267,7 @@ const SupplierWholesaleInquiries = () => {
                                     {/* Product Image */}
                                     <div className="flex-shrink-0">
                                         <img
-                                            src={inquiry.product?.images?.[0]?.url || '/placeholder.png'}
+                                            src={getPublicImageUrl(inquiry.product?.images?.[0]?.url) || '/placeholder.png'}
                                             alt={inquiry.product?.name}
                                             className="w-32 h-32 object-cover rounded-lg border-2 border-gray-200"
                                         />

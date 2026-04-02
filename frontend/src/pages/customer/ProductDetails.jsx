@@ -12,6 +12,7 @@ import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 import ProductCard from '../../components/ProductCard';
 import BulkOrderModal from '../../components/BulkOrderModal';
 import Skeleton from '../../components/Skeleton';
@@ -364,7 +365,7 @@ const ProductDetails = () => {
                 </div>
               )}
               <img
-                src={product.images?.[selectedImage]?.url || '/placeholder-product.png'}
+                src={getPublicImageUrl(product.images?.[selectedImage]?.url) || '/placeholder-product.png'}
                 alt={product.name}
                 className="w-full h-full object-contain p-8"
                 loading="lazy"
@@ -404,7 +405,7 @@ const ProductDetails = () => {
                       }`}
                   >
                     <img
-                      src={img.url}
+                      src={getPublicImageUrl(img.url)}
                       alt={`${product.name} ${index + 1}`}
                       className="w-full h-full object-cover"
                     />

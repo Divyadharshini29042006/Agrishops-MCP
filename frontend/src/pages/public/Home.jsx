@@ -14,8 +14,8 @@ import {
 import { GiWheat } from 'react-icons/gi';
 import ProductCard from '../../components/ProductCard';
 import { useLanguage } from '../../hooks/useLanguage';
-import { useAuth } from '../../hooks/useAuth';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 // Product Card is now imported from components
 
@@ -365,7 +365,7 @@ const Home = () => {
                       <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg group-hover:shadow-2xl transition-shadow duration-300 border-4 border-white">
                         <div
                           className="w-full h-full bg-white bg-center bg-cover bg-no-repeat transform transition-transform duration-500 group-hover:scale-110"
-                          style={{ backgroundImage: `url(${brand.businessDetails?.brandLogo?.url})`, backgroundSize: 'contain' }}
+                          style={{ backgroundImage: `url(${getPublicImageUrl(brand.businessDetails?.brandLogo?.url)})`, backgroundSize: 'contain' }}
                         />
                         <div className="absolute inset-0 bg-green-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
@@ -452,7 +452,7 @@ const Home = () => {
 
             {selectedBrand?.businessDetails?.brandLogo?.url && (
               <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-100 shadow-lg">
-                <div className="w-full h-full bg-white bg-center bg-contain bg-no-repeat" style={{ backgroundImage: `url(${selectedBrand.businessDetails.brandLogo.url})` }} />
+                <div className="w-full h-full bg-white bg-center bg-contain bg-no-repeat" style={{ backgroundImage: `url(${getPublicImageUrl(selectedBrand.businessDetails.brandLogo.url)})` }} />
               </div>
             )}
 

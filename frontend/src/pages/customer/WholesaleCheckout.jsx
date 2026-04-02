@@ -5,6 +5,7 @@ import { HiArrowLeft, HiCheckCircle, HiExclamationCircle, HiShieldCheck, HiTruck
 import useToast from '../../hooks/useToast';
 import { useAuth } from '../../hooks/useAuth';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const WholesaleCheckout = () => {
     const { user } = useAuth();
@@ -261,7 +262,7 @@ const WholesaleCheckout = () => {
                             <div className="p-6">
                                 <div className="flex gap-6 items-start">
                                     <img
-                                        src={inquiry.product?.images?.[0]?.url || '/placeholder.png'}
+                                        src={getPublicImageUrl(inquiry.product?.images?.[0]?.url) || '/placeholder.png'}
                                         alt={inquiry.product?.name}
                                         className="w-32 h-32 object-cover rounded-xl border-4 border-gray-50 shadow-inner"
                                     />

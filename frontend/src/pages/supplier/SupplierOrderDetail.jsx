@@ -17,6 +17,7 @@ import {
 } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const SupplierOrderDetails = () => {
   const { id } = useParams();
@@ -233,7 +234,7 @@ const SupplierOrderDetails = () => {
                       className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                     >
                       <img
-                        src={item.product?.images?.[0]?.url || '/placeholder-product.png'}
+                        src={getPublicImageUrl(item.product?.images?.[0]?.url) || '/placeholder-product.png'}
                         alt={item.productName}
                         className="w-20 h-20 object-cover rounded-lg border border-gray-200"
                       />

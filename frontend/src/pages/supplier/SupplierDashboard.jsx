@@ -8,6 +8,7 @@ import MerchantStockAlert from '../../components/MerchantStockAlert';
 import { useAuth } from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const SupplierDashboard = () => {
   const { user } = useAuth();
@@ -242,7 +243,7 @@ const SupplierDashboard = () => {
               <div className="space-y-4">
                 {recentProducts.map(product => (
                   <div key={product._id} className="flex items-center gap-4 p-3 border border-gray-100 rounded-lg">
-                    <img src={product.images?.[0]?.url || '/placeholder.png'} alt="" className="w-12 h-12 object-cover rounded-lg bg-gray-100" />
+                    <img src={getPublicImageUrl(product.images?.[0]?.url) || '/placeholder.png'} alt="" className="w-12 h-12 object-cover rounded-lg bg-gray-100" />
                     <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-gray-900 text-sm truncate">{product.name}</h3>
                       <p className="text-xs text-gray-500">₹{product.price} • Stock: {product.stockSummary}</p>

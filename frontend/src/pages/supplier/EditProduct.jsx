@@ -8,6 +8,7 @@ import {
 import useToast from '../../hooks/useToast';
 import { useAuth } from '../../hooks/useAuth';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -912,7 +913,7 @@ const EditProduct = () => {
                     {existingImages.map((image, index) => (
                       <div key={index} className="relative group">
                         <img
-                          src={image.url}
+                          src={getPublicImageUrl(image.url)}
                           alt={`Product ${index + 1}`}
                           className="w-full h-32 object-cover rounded-lg border-2 border-gray-200"
                         />

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { HiCheckCircle, HiXCircle, HiUser, HiMail, HiPhone, HiOfficeBuilding, HiEye, HiLocationMarker, HiIdentification } from 'react-icons/hi';
 import useToast from '../../hooks/useToast';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const UserApproval = () => {
   const { showSuccess, showError } = useToast();
@@ -242,7 +243,7 @@ const UserApproval = () => {
                   {selectedUser.profileImage?.url && (
                     <div className="md:col-span-2 flex justify-center">
                       <img
-                        src={selectedUser.profileImage.url}
+                        src={getPublicImageUrl(selectedUser.profileImage.url)}
                         alt={selectedUser.name}
                         className="w-24 h-24 rounded-full object-cover border-4 border-blue-200"
                       />
@@ -381,7 +382,7 @@ const UserApproval = () => {
                     {selectedUser.businessDetails.brandLogo?.url && (
                       <div className="md:col-span-2 flex flex-col items-center gap-2">
                         <img
-                          src={selectedUser.businessDetails.brandLogo.url}
+                          src={getPublicImageUrl(selectedUser.businessDetails.brandLogo.url)}
                           alt="Brand Logo"
                           className="w-32 h-32 object-contain border-2 border-gray-300 rounded-lg p-2 bg-white"
                         />

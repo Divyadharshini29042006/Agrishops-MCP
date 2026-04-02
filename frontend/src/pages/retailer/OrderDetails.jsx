@@ -9,6 +9,7 @@ import {
 import useToast from '../../hooks/useToast';
 import { useAuth } from '../../hooks/useAuth';
 import api from '../../services/api';
+import { getPublicImageUrl } from '../../utils/imageUtils';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -363,7 +364,7 @@ const OrderDetails = () => {
                       className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors"
                     >
                       <img
-                        src={item.product?.images?.[0]?.url || '/placeholder-product.png'}
+                        src={getPublicImageUrl(item.product?.images?.[0]?.url) || '/placeholder-product.png'}
                         alt={item.productName}
                         className="w-20 h-20 object-cover rounded-lg border-2 border-gray-300"
                       />
