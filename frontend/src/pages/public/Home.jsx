@@ -32,7 +32,7 @@ const ProductCarousel = ({ title, categorySlug, viewAllLink }) => {
       try {
         const params = new URLSearchParams({ limit: 10, sort: '-createdAt' });
         if (categorySlug) params.set('category', categorySlug);
-        const res = await api.get(`products?${params.toString()}`);
+        const res = await api.get(`/api/products?${params.toString()}`);
         const data = res.data.data || [];
         setProducts(data);
       } catch (err) {
@@ -182,7 +182,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const response = await api.get('brands/homepage');
+        const response = await api.get('/api/brands/homepage');
         if (response.data.success) setBrands(response.data.data || []);
       } catch (error) {
         console.error('Error fetching brands:', error);

@@ -20,7 +20,7 @@ export const NotificationProvider = ({ children }) => {
 
     try {
       if (isInitial) setLoading(true);
-      const response = await api.get('/notifications?limit=10');
+      const response = await api.get('/api/notifications?limit=10');
       
       if (response.data.success) {
         const fetchedNotifications = response.data.data;
@@ -77,7 +77,7 @@ export const NotificationProvider = ({ children }) => {
 
   const markAsRead = async (id) => {
     try {
-      const response = await api.patch(`/notifications/${id}/read`);
+      const response = await api.patch(`/api/notifications/${id}/read`);
       if (response.data.success) {
         setNotifications(prev => 
           prev.map(n => n._id === id ? { ...n, isRead: true } : n)
@@ -91,7 +91,7 @@ export const NotificationProvider = ({ children }) => {
 
   const markAllAsRead = async () => {
     try {
-      const response = await api.patch('/notifications/read-all');
+      const response = await api.patch('/api/notifications/read-all');
       if (response.data.success) {
         setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
         setUnreadCount(0);
