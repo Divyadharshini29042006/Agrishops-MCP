@@ -280,6 +280,103 @@ export const getProducts = async (req, res) => {
 };
 
 /**
+ * @desc    Get consolidated homepage data (Brands + Category Tree + Featured Products)
+ * @route   GET /api/products/homepage-data
+ * @access  Public
+ */
+export const getHomepageData = async (req, res) => {
+  try {
+    // 1. Fetch Brands (Logic from getHomepageBrands)
+    const brandsPromise = User.find({
+      role: { $in: ['supplier', 'retailer'] },
+      'businessDetails.brandLogo.url': { $exists: true, $ne: null },
+      'businessDetails.brandLogoStatus': 'approved',
+      'businessDetails.showOnHomepage': true,
+      isActive: true,
+      isApproved: true
+    })
+      .select('name role businessDetails.businessName businessDetails.brandLogo businessDetails.displayOrder')
+      .sort('businessDetails.displayOrder -createdAt')
+      .limit(50);
+
+    // 2. Fetch Category Tree
+    const categoryTreePromise = Category.getCategoryTree();
+
+    // 3. Fetch Featured Products for specific categories
+    const featuredCategorySlugs = [
+      'vegetable-seeds',
+      'crop-protection',
+      'flower-seeds',
+      'fruit-seeds',
+      'bio-pesticides',
+      'chemical-pesticides'
+    ];
+
+    // Helper to fetch products for a category slug
+    const fetchCategoryProducts = async (slug) => {
+      const categoryDoc = await Category.findOne({ slug, isActive: true });
+      if (!categoryDoc) return { category: slug, products: [] };
+
+      const categoryIds = [categoryDoc._id];
+      if (categoryDoc.level === 'main') {
+        const subCategories = await Category.find({ parent: categoryDoc._id, isActive: true }).select('_id');
+        const subIds = subCategories.map(c => c._id);
+        categoryIds.push(...subIds);
+        if (subIds.length > 0) {
+          const types = await Category.find({ parent: { $in: subIds }, isActive: true }).select('_id');
+          categoryIds.push(...types.map(c => c._id));
+        }
+      }
+
+      const products = await Product.find({
+        isActive: true,
+        approvalStatus: 'approved',
+        $or: [
+          { 'category.main': { $in: categoryIds } },
+          { 'category.sub': { $in: categoryIds } },
+          { 'category.type': { $in: categoryIds } }
+        ]
+      })
+        .populate('category.main', 'name slug')
+        .select('name pricing images brand rating variants stock seller category')
+        .sort('-createdAt')
+        .limit(10);
+
+      return { category: slug, products };
+    };
+
+    // Execute all in parallel
+    const [brands, categoryTree, ...categoryProductsResults] = await Promise.all([
+      brandsPromise,
+      categoryTreePromise,
+      ...featuredCategorySlugs.map(slug => fetchCategoryProducts(slug))
+    ]);
+
+    // Map products to their slugs
+    const featuredProducts = {};
+    categoryProductsResults.forEach(result => {
+      featuredProducts[result.category] = result.products;
+    });
+
+    res.status(200).json({
+      success: true,
+      data: {
+        brands,
+        categoryTree,
+        featuredProducts
+      }
+    });
+  } catch (error) {
+    console.error('Get homepage data error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching homepage data',
+      error: error.message,
+    });
+  }
+};
+
+/**
  * @desc    Get single product by ID
  * @route   GET /api/products/:id
  * @access  Public

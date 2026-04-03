@@ -23,12 +23,18 @@ import { getPublicImageUrl } from '../../utils/imageUtils';
 // ─────────────────────────────────────────────
 // Helper: Product Carousel Section
 // ─────────────────────────────────────────────
-const ProductCarousel = ({ title, categorySlug, viewAllLink }) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+const ProductCarousel = ({ title, categorySlug, viewAllLink, initialProducts = null }) => {
+  const [products, setProducts] = useState(initialProducts || []);
+  const [loading, setLoading] = useState(!initialProducts);
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    if (initialProducts) {
+      setProducts(initialProducts);
+      setLoading(false);
+      return;
+    }
+
     const fetchProducts = async () => {
       try {
         const params = new URLSearchParams({ limit: 10, sort: '-createdAt' });
@@ -43,7 +49,7 @@ const ProductCarousel = ({ title, categorySlug, viewAllLink }) => {
       }
     };
     fetchProducts();
-  }, [categorySlug, title]);
+  }, [categorySlug, title, initialProducts]);
 
   const scroll = (dir) => {
     if (scrollRef.current) {
@@ -119,6 +125,8 @@ const Home = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [brands, setBrands] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState({});
+  const [loading, setLoading] = useState(true);
   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
   const [showSupplierModal, setShowSupplierModal] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -179,17 +187,24 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [heroSlides.length]);
 
-  // Fetch brands
+  // ✅ OPTIMIZED: Fetch all homepage data in ONE call
   useEffect(() => {
-    const fetchBrands = async () => {
+    const fetchHomepageData = async () => {
       try {
-        const response = await api.get('/api/brands/homepage');
-        if (response.data.success) setBrands(response.data.data || []);
+        setLoading(true);
+        const response = await api.get('/api/products/homepage-data');
+        if (response.data.success) {
+          const { brands: brandsData, featuredProducts: productsData } = response.data.data;
+          setBrands(brandsData || []);
+          setFeaturedProducts(productsData || {});
+        }
       } catch (error) {
-        console.error('Error fetching brands:', error);
+        console.error('Error fetching homepage data:', error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchBrands();
+    fetchHomepageData();
   }, []);
 
   // Auto-rotate brands
@@ -344,6 +359,7 @@ const Home = () => {
           title={section.title}
           categorySlug={section.categorySlug}
           viewAllLink={section.viewAll}
+          initialProducts={featuredProducts[section.categorySlug]}
         />
       ))}
 

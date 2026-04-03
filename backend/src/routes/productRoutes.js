@@ -11,6 +11,7 @@ import {
   getSeasonalProducts,
   searchProducts,
   compareProducts,
+  getHomepageData,
 } from '../controllers/productController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { authorize } from '../middleware/roleMiddleware.js';
@@ -25,6 +26,7 @@ const router = express.Router();
 // ========== 1. PUBLIC ROUTES (Specific paths) ==========
 router.get('/seasonal', getSeasonalProducts);
 router.get('/search', searchProducts);
+router.get('/homepage-data', getHomepageData);
 
 // ========== 2. PROTECTED ROUTES - Sellers (Specific paths) ==========
 // ✅ CRITICAL: /my/products MUST come BEFORE /:id
