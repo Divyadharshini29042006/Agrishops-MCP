@@ -1,6 +1,7 @@
-// backend/src/app.js
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Import routes
 import varietyRoutes from './routes/VarietyRoutes.js';
@@ -57,8 +58,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Define __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Serve static files (for uploaded images)
-app.use('/uploads', express.static('uploads'));
+// ✅ FIXED: Use absolute path relative to src directory
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // API Routes
 app.use('/api/admin', adminRoutes);
