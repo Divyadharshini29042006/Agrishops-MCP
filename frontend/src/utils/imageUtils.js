@@ -17,17 +17,20 @@ export const getPublicImageUrl = (url) => {
   if (url.startsWith('blob:') || url.startsWith('data:')) return url;
 
   // 3. Get the base API URL from environment
-  // Remove trailing slash if present for consistent joining
-  const apiBaseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+  // Remove trailing slash and '/api' if present for consistent joining
+  let apiBaseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+  
+  // ✅ FIX: Strip /api from the base URL when accessing static files in /uploads
+  const serverBaseUrl = apiBaseUrl.replace(/\/api$/, '');
 
   // 3. Handle absolute URLs containing localhost:5000 (often found in legacy database entries)
   if (url.includes('localhost:5000')) {
-    return url.replace('http://localhost:5000', apiBaseUrl);
+    return url.replace('http://localhost:5000', serverBaseUrl);
   }
 
   // 4. Handle relative paths (e.g. /uploads/image.jpg)
   if (url.startsWith('/uploads')) {
-    return `${apiBaseUrl}${url}`;
+    return `${serverBaseUrl}${url}`;
   }
 
   // 5. If it's an external URL (already starts with http/https), return as is
@@ -36,7 +39,7 @@ export const getPublicImageUrl = (url) => {
   }
 
   // 6. Default: if it's just a filename, assume it's in /uploads
-  return `${apiBaseUrl}/uploads/${url}`;
+  return `${serverBaseUrl}/uploads/${url}`;
 };
 
 export default { getPublicImageUrl };
