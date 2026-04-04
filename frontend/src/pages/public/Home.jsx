@@ -23,7 +23,7 @@ import { getPublicImageUrl } from '../../utils/imageUtils';
 // ─────────────────────────────────────────────
 // Helper: Product Carousel Section
 // ─────────────────────────────────────────────
-const ProductCarousel = ({ title, categorySlug, viewAllLink, initialProducts = null }) => {
+const ProductCarousel = ({ title, categorySlug, viewAllLink, initialProducts = null, parentLoading = false }) => {
   const [products, setProducts] = useState(initialProducts || []);
   const [loading, setLoading] = useState(!initialProducts);
   const scrollRef = useRef(null);
@@ -35,8 +35,15 @@ const ProductCarousel = ({ title, categorySlug, viewAllLink, initialProducts = n
       return;
     }
 
+    // ✅ OPTIMIZATION: If parent is loading homepage-data, don't fetch independently
+    if (parentLoading) {
+      setLoading(true);
+      return;
+    }
+
     const fetchProducts = async () => {
       try {
+        setLoading(true);
         const params = new URLSearchParams({ limit: 10, sort: '-createdAt' });
         if (categorySlug) params.set('category', categorySlug);
         const res = await api.get(`/api/products?${params.toString()}`);
@@ -49,7 +56,7 @@ const ProductCarousel = ({ title, categorySlug, viewAllLink, initialProducts = n
       }
     };
     fetchProducts();
-  }, [categorySlug, title, initialProducts]);
+  }, [categorySlug, title, initialProducts, parentLoading]);
 
   const scroll = (dir) => {
     if (scrollRef.current) {
@@ -360,6 +367,7 @@ const Home = () => {
           categorySlug={section.categorySlug}
           viewAllLink={section.viewAll}
           initialProducts={featuredProducts[section.categorySlug]}
+          parentLoading={loading} // Pass loading state to prevent redundant fetches
         />
       ))}
 

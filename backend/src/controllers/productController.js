@@ -297,7 +297,8 @@ export const getHomepageData = async (req, res) => {
     })
       .select('name role businessDetails.businessName businessDetails.brandLogo businessDetails.displayOrder')
       .sort('businessDetails.displayOrder -createdAt')
-      .limit(50);
+      .limit(50)
+      .lean();
 
     // 2. Fetch Category Tree
     const categoryTreePromise = Category.getCategoryTree();
@@ -314,33 +315,30 @@ export const getHomepageData = async (req, res) => {
 
     // Helper to fetch products for a category slug
     const fetchCategoryProducts = async (slug) => {
-      const categoryDoc = await Category.findOne({ slug, isActive: true });
+      // ✅ OPTIMIZED: Use direct indexed lookup instead of building descendant lists
+      const categoryDoc = await Category.findOne({ slug, isActive: true }).select('_id level').lean();
       if (!categoryDoc) return { category: slug, products: [] };
 
-      const categoryIds = [categoryDoc._id];
+      const productQuery = {
+        isActive: true,
+        approvalStatus: 'approved'
+      };
+
+      // Map to correct category field based on level
       if (categoryDoc.level === 'main') {
-        const subCategories = await Category.find({ parent: categoryDoc._id, isActive: true }).select('_id');
-        const subIds = subCategories.map(c => c._id);
-        categoryIds.push(...subIds);
-        if (subIds.length > 0) {
-          const types = await Category.find({ parent: { $in: subIds }, isActive: true }).select('_id');
-          categoryIds.push(...types.map(c => c._id));
-        }
+        productQuery['category.main'] = categoryDoc._id;
+      } else if (categoryDoc.level === 'sub') {
+        productQuery['category.sub'] = categoryDoc._id;
+      } else {
+        productQuery['category.type'] = categoryDoc._id;
       }
 
-      const products = await Product.find({
-        isActive: true,
-        approvalStatus: 'approved',
-        $or: [
-          { 'category.main': { $in: categoryIds } },
-          { 'category.sub': { $in: categoryIds } },
-          { 'category.type': { $in: categoryIds } }
-        ]
-      })
+      const products = await Product.find(productQuery)
         .populate('category.main', 'name slug')
         .select('name pricing images brand rating variants stock seller category')
         .sort('-createdAt')
-        .limit(10);
+        .limit(10)
+        .lean();
 
       return { category: slug, products };
     };

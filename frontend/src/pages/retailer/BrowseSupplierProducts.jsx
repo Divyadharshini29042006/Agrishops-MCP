@@ -37,8 +37,11 @@ const BrowseSupplierProducts = () => {
 
   useEffect(() => {
     fetchCategories();
+  }, []); // Only fetch categories once on mount
+
+  useEffect(() => {
     fetchSupplierProducts();
-  }, [categoryFilter, searchQuery, priceRange]);
+  }, [categoryFilter, searchQuery, priceRange]); // Re-fetch products when filters change
 
   const fetchCategories = async () => {
     try {
